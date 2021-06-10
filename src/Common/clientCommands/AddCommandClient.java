@@ -1,13 +1,12 @@
 package Common.clientCommands;
 
 import Client.ClientManager;
-import Client.ConsoleManager;
+import Client.ClientConsoleManager;
 import Common.collectionInfo.StudyGroup;
 import Common.commandCommon.AbstractCommand;
 import Common.commandCommon.Command;
 import Common.managers.CollectionManager;
 import Common.managers.InputAndVerifier;
-import Common.managers.Serializer;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -34,7 +33,7 @@ public class AddCommandClient extends AbstractCommand implements Command {
                 inputAndVerifier.askShouldBeExpelled(),
                 inputAndVerifier.askFormOfEducation(),
                 inputAndVerifier.askSemester());
-        ConsoleManager.print("Study Group created successfully");
+        ClientConsoleManager.print("Study Group created successfully");
         return null;
     }
 

@@ -1,7 +1,7 @@
 package Common.clientCommands;
 
 import Client.CommandFactory;
-import Client.ConsoleManager;
+import Client.ClientConsoleManager;
 import Common.commandCommon.AbstractCommand;
 import Common.commandCommon.Command;
 
@@ -18,7 +18,7 @@ public class HelpCommandClient extends AbstractCommand implements Command {
 //        ConsoleManager.println(CommandFactory.map.get("EXECUTE_SCRIPT").toString());
 //        ConsoleManager.println(CommandFactory.map.get("EXIT").toString());
 //        ConsoleManager.println(CommandFactory.map.get("FILTER_GREATER_THAN_FORM_OF_EDUCATION").toString());
-        ConsoleManager.println(CommandFactory.map.get("HELP").toString());
+        ClientConsoleManager.println(CommandFactory.map.get("HELP").toString());
 //        ConsoleManager.println(CommandFactory.map.get("HISTORY").toString());
 //        ConsoleManager.println(CommandFactory.map.get("INFO").toString());
 //        ConsoleManager.println(CommandFactory.map.get("INSERT_AT").toString());

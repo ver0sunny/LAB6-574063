@@ -1,7 +1,5 @@
 package Client;
 
-import Common.managers.Serializer;
-
 import java.io.IOException;
 import java.net.*;
 
@@ -29,6 +27,7 @@ public class ConnectionPacket {
         }
         byte[] pack = new byte[1];
         send(pack);
+        ClientConsoleManager.println("..Client activated..");
     }
 
     public byte[] receive() {
@@ -55,7 +54,7 @@ public class ConnectionPacket {
         DatagramPacket sendingPacket = new DatagramPacket(toSend,toSend.length,IPAddress, SERVICE_PORT);
         try {
             clientSocket.send(sendingPacket);
-            System.out.println("Packet sent successfully!");
+//            ClientConsoleManager.println("Packet sent successfully!");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -3,11 +3,15 @@ package Common.serverCommands;
 import Common.commandCommon.AbstractCommand;
 import Common.commandCommon.Command;
 import Server.CommandFactory;
+import Server.ConnectionChannel;
 
 public class HelpCommand extends AbstractCommand implements Command {
 
-    public HelpCommand() {
+    private ConnectionChannel connectionChannel;
+
+    public HelpCommand(ConnectionChannel connectionChannel) {
         super("help", "info on available commands");
+        this.connectionChannel = connectionChannel;
     }
 
     @Override
@@ -24,8 +28,8 @@ public class HelpCommand extends AbstractCommand implements Command {
         sb.append("\n");
 //        sb.append(CommandFactory.map.get("ADD_IF_MIN").toString());
 //        sb.append("\n");
-//        sb.append(CommandFactory.map.get("CLEAR").toString());
-//        sb.append("\n");
+        sb.append(CommandFactory.map.get("CLEAR").toString());
+        sb.append("\n");
 //        sb.append(CommandFactory.map.get("EXECUTE_SCRIPT").toString());
 //        sb.append("\n");
 //        sb.append(CommandFactory.map.get("EXIT").toString());
@@ -52,6 +56,7 @@ public class HelpCommand extends AbstractCommand implements Command {
 //        sb.append("\n");
 //        sb.append(CommandFactory.map.get("UPDATE").toString());
 //        sb.append("\n");
+        connectionChannel.sendMes("");
         return sb.toString();
     }
 }

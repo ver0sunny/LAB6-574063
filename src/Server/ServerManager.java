@@ -29,14 +29,13 @@ public class ServerManager {
         byte[] inputPacket = connectionChannel.receive();
         CommandToSend receivedObject;
         receivedObject = serializer.deserialize(inputPacket);
-//        ConsoleManager.println(receivedObject.toString());
         String commandName = receivedObject.getName();
         String args = receivedObject.getArgs();
         String messageToSend = null;
             try {
                 messageToSend = commandManager.execute(commandName, args);
             } catch (NoSuchCommandException e) {
-                ConsoleManager.println("Client mistake");
+                ServerConsoleManager.println("Client mistake");
             }
         receivedObject.setArgs(messageToSend);
         toSend = serializer.serialize(receivedObject);
@@ -45,10 +44,11 @@ public class ServerManager {
 
     public void send() {
         connectionChannel.send(toSend);
-        ConsoleManager.println("^-^ Executed " + serializer.deserialize(toSend).getName() + " command successfully sent ^0^");
+        ServerConsoleManager.println("^-^ Executed " + serializer.deserialize(toSend).getName() + " command successfully sent ^0^");
     }
 
-    public String receiveMes() {
-        return connectionChannel.receiveMes();
+    public void sendMes(String mesToSend) {
+        connectionChannel.sendMes(mesToSend);
     }
+
 }

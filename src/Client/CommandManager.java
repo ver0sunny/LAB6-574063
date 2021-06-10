@@ -24,9 +24,9 @@ public class CommandManager {
             historyManager.addToHistory(commandName);
             return contents;
         } catch (NoArgumentProvidedException e) {
-            ConsoleManager.printerror("No argument provided, check requirements " + commandFactory.getCommand(commandName).getName());
+            ClientConsoleManager.printerror("No argument provided, check requirements " + commandFactory.getCommand(commandName).getName());
         } catch (NoSuchCommandException e) {
-            ConsoleManager.printerror("No such command exists, check available commands" + commandFactory.getCommand("HELP").execute(""));
+            ClientConsoleManager.printerror("No such command exists, check available commands" + commandFactory.getCommand("HELP").execute(""));
         }
         return null;
     }

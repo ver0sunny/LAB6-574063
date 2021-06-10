@@ -2,6 +2,7 @@ package Server;
 
 import Common.managers.*;
 import Common.serverCommands.AddCommand;
+import Common.serverCommands.ClearCommand;
 import Common.serverCommands.HelpCommand;
 
 import java.util.Scanner;
@@ -12,24 +13,25 @@ public class ServerRunner {
 
         System.setProperty("scriptName", "commandScript.txt");
 
-        ConnectionChannel connectionChannel = new ConnectionChannel();
+        Serializer serializer = new Serializer();
+        ConnectionChannel connectionChannel = new ConnectionChannel(serializer);
         Scanner userInput = new Scanner(System.in);
         InputAndVerifier inputAndVerifier = new InputAndVerifier(userInput);
         FileManager fileManager = new FileManager(System.getProperty("fileName"));
         CollectionManager collectionManager = new CollectionManager(fileManager);
+        collectionManager.loadCollection();
         HistoryManager historyManager = new HistoryManager();
-        CommandFactory commandFactory = new CommandFactory(collectionManager, inputAndVerifier, new AddCommand(collectionManager,connectionChannel),
-               // new AddIfMinCommand(collectionManager, inputAndVerifier), new ClearCommand(collectionManager),
+        CommandFactory commandFactory = new CommandFactory(collectionManager, inputAndVerifier, new AddCommand(collectionManager,connectionChannel),// new AddIfMinCommand(collectionManager, inputAndVerifier),
+                 new ClearCommand(collectionManager,connectionChannel),new HelpCommand(connectionChannel));
                 //new ExecuteScript(), new ExitCommand(collectionManager), new FilterByFormOfEducationCommand(collectionManager),
-                new HelpCommand());// new History(historyManager), new InfoCommand(collectionManager),
+                // new History(historyManager), new InfoCommand(collectionManager),
                // new InsertAtCommand(collectionManager, inputAndVerifier), new PrintDecendingBySemester(collectionManager),
               //  new RemoveByIdCommand(collectionManager), new RemoveByStudentCount(collectionManager),
               //  new SaveCommand(collectionManager), new ShowCommand(collectionManager), new UpdateCommand(collectionManager, inputAndVerifier));
         CommandManager commandManager = new CommandManager(historyManager, collectionManager, commandFactory, inputAndVerifier);
-        Serializer serializer = new Serializer();
         ServerManager serverManager = new ServerManager(commandManager, serializer,connectionChannel);
 //        serverManager.setUp();
-        ConsoleManager consoleManager = new ConsoleManager(userInput, commandManager, serverManager, serializer);
+        ServerConsoleManager consoleManager = new ServerConsoleManager(userInput, commandManager, serverManager, serializer);
         consoleManager.serverMode();
     }
 }

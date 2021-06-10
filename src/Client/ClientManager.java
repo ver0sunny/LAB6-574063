@@ -22,9 +22,11 @@ public class ClientManager {
     }
 
     //
-    public CommandToSend receive() {
+    public String receive() {
         byte[] receivingPacket = connectionPacket.receive();
-        return serializer.deserialize(receivingPacket);
+        CommandToSend receivedCommand;
+        receivedCommand = serializer.deserialize(receivingPacket);
+        return receivedCommand.getArgs();
     }
 
     public void send(CommandToSend commandToSend) {
@@ -33,11 +35,11 @@ public class ClientManager {
     }
 
     public String receiveMes() {
-        return serializer.deserializeCommand(connectionPacket.receive());
+        return serializer.deserializeMes(connectionPacket.receive());
     }
 
     public void sendMes(String mesToSend) {
-        connectionPacket.send(serializer.serializeCommand(mesToSend));
+        connectionPacket.send(serializer.serializeMes(mesToSend));
     }
 }
 

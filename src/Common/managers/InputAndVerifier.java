@@ -1,7 +1,7 @@
 package Common.managers;
 
 
-import Client.ConsoleManager;
+import Client.ClientConsoleManager;
 import Common.collectionInfo.Coordinates;
 import Common.collectionInfo.FormOfEducation;
 import Common.collectionInfo.Person;
@@ -30,17 +30,17 @@ public class InputAndVerifier {
         String name;
         while (true) {
             try {
-                ConsoleManager.println("Enter group name__ ");
+                ClientConsoleManager.println("Enter group name__ ");
                 name = userInput.nextLine().trim();
-                ConsoleManager.println(name);
+                ClientConsoleManager.println(name);
                 if (name.equals("")) throw new EmptyFieldException();
                 break;
             } catch (NoSuchElementException exception) {
-                ConsoleManager.printerror("No name spotted");
+                ClientConsoleManager.printerror("No name spotted");
             } catch (EmptyFieldException exception) {
-                ConsoleManager.printerror("No name has been entered. Try again");
+                ClientConsoleManager.printerror("No name has been entered. Try again");
             } catch (IllegalStateException exception) {
-                ConsoleManager.printerror("Oups... Something went wrong");
+                ClientConsoleManager.printerror("Oups... Something went wrong");
                 System.exit(0);
             }
         }
@@ -51,17 +51,17 @@ public class InputAndVerifier {
         String adminName = null;
         while (true) {
             try {
-                ConsoleManager.println("Enter admin name__ ");
+                ClientConsoleManager.println("Enter admin name__ ");
                 adminName = userInput.nextLine().trim();
-                ConsoleManager.println(adminName);
+                ClientConsoleManager.println(adminName);
                 if (adminName.equals("")) throw new EmptyFieldException();
                 break;
             } catch (NoSuchElementException exception) {
-                ConsoleManager.printerror("No name spotted");
+                ClientConsoleManager.printerror("No name spotted");
             } catch (EmptyFieldException exception) {
-                ConsoleManager.printerror("No name has been entered. Try again");
+                ClientConsoleManager.printerror("No name has been entered. Try again");
             } catch (IllegalStateException exception) {
-                ConsoleManager.printerror("Oups... Something went wrong");
+                ClientConsoleManager.printerror("Oups... Something went wrong");
                 System.exit(0);
             }
         }
@@ -73,23 +73,23 @@ public class InputAndVerifier {
         String strAdminHeight;
         while (true) {
             try {
-                ConsoleManager.println("Enter admin height_[>" + minHeight + "]_ ");
+                ClientConsoleManager.println("Enter admin height_[>" + minHeight + "]_ ");
                 strAdminHeight = userInput.nextLine().trim();
                 adminHeight = Integer.parseInt(strAdminHeight);
-                ConsoleManager.println(adminHeight);
+                ClientConsoleManager.println(adminHeight);
                 if (adminHeight <= minHeight) throw new BreaksLimitRulesException();
                 if (strAdminHeight.equals("")) throw new EmptyFieldException();
                 break;
             } catch (BreaksLimitRulesException e) {
-                ConsoleManager.printerror("Height must be greater than " + minHeight);
+                ClientConsoleManager.printerror("Height must be greater than " + minHeight);
             } catch (NumberFormatException exception) {
-                ConsoleManager.printerror("Height must be entered as a number");
+                ClientConsoleManager.printerror("Height must be entered as a number");
             } catch (NoSuchElementException exception) {
-                ConsoleManager.printerror("No height spotted");
+                ClientConsoleManager.printerror("No height spotted");
             } catch (EmptyFieldException exception) {
-                ConsoleManager.printerror("No height has been entered. Try again");
+                ClientConsoleManager.printerror("No height has been entered. Try again");
             } catch (IllegalStateException exception) {
-                ConsoleManager.printerror("Oups... Something went wrong");
+                ClientConsoleManager.printerror("Oups... Something went wrong");
                 System.exit(0);
             }
         }
@@ -101,23 +101,23 @@ public class InputAndVerifier {
         String strAdminWeight;
         while (true) {
             try {
-                ConsoleManager.println("Enter admin weight_[>" + minWeight + "]_ ");
+                ClientConsoleManager.println("Enter admin weight_[>" + minWeight + "]_ ");
                 strAdminWeight = userInput.nextLine().trim();
                 adminWeight = Integer.parseInt(strAdminWeight);
-                ConsoleManager.println(adminWeight);
+                ClientConsoleManager.println(adminWeight);
                 if (adminWeight <= minWeight) throw new BreaksLimitRulesException();
                 if (strAdminWeight.equals("")) throw new EmptyFieldException();
                 break;
             } catch (BreaksLimitRulesException e) {
-                ConsoleManager.printerror("Weight must be greater than " + minWeight);
+                ClientConsoleManager.printerror("Weight must be greater than " + minWeight);
             } catch (NumberFormatException exception) {
-                ConsoleManager.printerror("Weight must be entered as a number");
+                ClientConsoleManager.printerror("Weight must be entered as a number");
             } catch (NoSuchElementException exception) {
-                ConsoleManager.printerror("No weight spotted");
+                ClientConsoleManager.printerror("No weight spotted");
             } catch (EmptyFieldException exception) {
-                ConsoleManager.printerror("No weight has been entered. Try again");
+                ClientConsoleManager.printerror("No weight has been entered. Try again");
             } catch (IllegalStateException exception) {
-                ConsoleManager.printerror("Oups... Something went wrong");
+                ClientConsoleManager.printerror("Oups... Something went wrong");
                 System.exit(0);
             }
         }
@@ -128,20 +128,20 @@ public class InputAndVerifier {
         String adminPassportId;
         while (true) {
             try {
-                ConsoleManager.println("Enter admin passport ID_[valid 10 digit number]_ ");
+                ClientConsoleManager.println("Enter admin passport ID_[valid 10 digit number]_ ");
                 adminPassportId = userInput.nextLine().trim();
-                ConsoleManager.println(adminPassportId);
+                ClientConsoleManager.println(adminPassportId);
                 if (adminPassportId.length() < minPassportID) throw new BreaksLimitRulesException();
                 if (adminPassportId.equals("")) throw new EmptyFieldException();
                 break;
             } catch (BreaksLimitRulesException e) {
-                ConsoleManager.printerror("Passport ID must be longer than " + minPassportID + " digits");
+                ClientConsoleManager.printerror("Passport ID must be longer than " + minPassportID + " digits");
             } catch (NoSuchElementException exception) {
-                ConsoleManager.printerror("No Passport ID spotted");
+                ClientConsoleManager.printerror("No Passport ID spotted");
             } catch (EmptyFieldException exception) {
-                ConsoleManager.printerror("No Passport ID has been entered. Try again");
+                ClientConsoleManager.printerror("No Passport ID has been entered. Try again");
             } catch (IllegalStateException exception) {
-                ConsoleManager.printerror("Oups... Something went wrong");
+                ClientConsoleManager.printerror("Oups... Something went wrong");
                 System.exit(0);
             }
         }
@@ -161,19 +161,19 @@ public class InputAndVerifier {
         String strX;
         while (true) {
             try {
-                ConsoleManager.println("Enter X-coordinate__ ");
+                ClientConsoleManager.println("Enter X-coordinate__ ");
                 strX = userInput.nextLine().trim();
                 x = Float.parseFloat(strX);
                 if (strX.equals("")) throw new EmptyFieldException();
                 break;
             } catch (NoSuchElementException exception) {
-                ConsoleManager.printerror("No X-coordinate spotted");
+                ClientConsoleManager.printerror("No X-coordinate spotted");
             } catch (EmptyFieldException exception) {
-                ConsoleManager.printerror("No X-coordinate has been entered. Try again");
+                ClientConsoleManager.printerror("No X-coordinate has been entered. Try again");
             } catch (NumberFormatException exception) {
-                ConsoleManager.printerror("X-coordinate must be entered as a number");
+                ClientConsoleManager.printerror("X-coordinate must be entered as a number");
             } catch (NullPointerException | IllegalStateException exception) {
-                ConsoleManager.printerror("Oups... Something went wrong");
+                ClientConsoleManager.printerror("Oups... Something went wrong");
                 System.exit(0);
             }
         }
@@ -185,22 +185,22 @@ public class InputAndVerifier {
         String strY;
         while (true) {
             try {
-                ConsoleManager.println("Enter Y-coordinate_[> " + minY + "]_ ");
+                ClientConsoleManager.println("Enter Y-coordinate_[> " + minY + "]_ ");
                 strY = userInput.nextLine().trim();
                 y = Long.parseLong(strY);
                 if (y <= minY) throw new BreaksLimitRulesException();
                 if (strY.equals("")) throw new EmptyFieldException();
                 break;
             } catch (BreaksLimitRulesException e) {
-                ConsoleManager.printerror("Y-coordinate must be greater than " + minY);
+                ClientConsoleManager.printerror("Y-coordinate must be greater than " + minY);
             } catch (NoSuchElementException exception) {
-                ConsoleManager.printerror("No Y-coordinate spotted");
+                ClientConsoleManager.printerror("No Y-coordinate spotted");
             } catch (EmptyFieldException e) {
-                ConsoleManager.printerror("No Y-coordinate has been entered. Try again");
+                ClientConsoleManager.printerror("No Y-coordinate has been entered. Try again");
             } catch (NumberFormatException exception) {
-                ConsoleManager.printerror("Y-coordinate must be entered as a number");
+                ClientConsoleManager.printerror("Y-coordinate must be entered as a number");
             } catch (NullPointerException | IllegalStateException exception) {
-                ConsoleManager.printerror("Oups... Something went wrong");
+                ClientConsoleManager.printerror("Oups... Something went wrong");
                 System.exit(0);
             }
         }
@@ -220,22 +220,22 @@ public class InputAndVerifier {
         String strStudentsCount;
         while (true) {
             try {
-                ConsoleManager.println("Enter students count_[> " + minStudentsCount + "]_ ");
+                ClientConsoleManager.println("Enter students count_[> " + minStudentsCount + "]_ ");
                 strStudentsCount = userInput.nextLine().trim();
                 studentsCount = Integer.parseInt(strStudentsCount);
                 if (studentsCount <= minStudentsCount) throw new BreaksLimitRulesException();
                 if (strStudentsCount.equals("")) throw new EmptyFieldException();
                 break;
             } catch (BreaksLimitRulesException e) {
-                ConsoleManager.printerror("Students count must be greater than " + minStudentsCount);
+                ClientConsoleManager.printerror("Students count must be greater than " + minStudentsCount);
             } catch (EmptyFieldException e) {
-                ConsoleManager.printerror("No Students count has been entered. Try again");
+                ClientConsoleManager.printerror("No Students count has been entered. Try again");
             } catch (NoSuchElementException exception) {
-                ConsoleManager.printerror("No Students count spotted");
+                ClientConsoleManager.printerror("No Students count spotted");
             } catch (NumberFormatException exception) {
-                ConsoleManager.printerror("Students count must be entered as a number");
+                ClientConsoleManager.printerror("Students count must be entered as a number");
             } catch (NullPointerException | IllegalStateException exception) {
-                ConsoleManager.printerror("Oups... Something went wrong");
+                ClientConsoleManager.printerror("Oups... Something went wrong");
                 System.exit(0);
             }
         }
@@ -249,22 +249,22 @@ public class InputAndVerifier {
         String strShouldBeExpelled;
         while (true) {
             try {
-                ConsoleManager.println("Enter how many students should be  expelled[> " + minShouldBeExpelled + "]_ ");
+                ClientConsoleManager.println("Enter how many students should be  expelled[> " + minShouldBeExpelled + "]_ ");
                 strShouldBeExpelled = userInput.nextLine().trim();
                 shouldBeExpelled = Integer.parseInt(strShouldBeExpelled);
                 if (shouldBeExpelled <= minShouldBeExpelled) throw new BreaksLimitRulesException();
                 if (strShouldBeExpelled.equals("")) throw new EmptyFieldException();
                 break;
             } catch (BreaksLimitRulesException e) {
-                ConsoleManager.printerror("Number of 'should-be-expelled'-students must be greater than " + minShouldBeExpelled);
+                ClientConsoleManager.printerror("Number of 'should-be-expelled'-students must be greater than " + minShouldBeExpelled);
             } catch (EmptyFieldException e) {
-                ConsoleManager.printerror("No number has been entered. Try again");
+                ClientConsoleManager.printerror("No number has been entered. Try again");
             } catch (NoSuchElementException exception) {
-                ConsoleManager.printerror("No 'should-be-expelled'-studdents spotted");
+                ClientConsoleManager.printerror("No 'should-be-expelled'-studdents spotted");
             } catch (NumberFormatException exception) {
-                ConsoleManager.printerror("Number of 'should-be-expelled'-students must be entered as a number");
+                ClientConsoleManager.printerror("Number of 'should-be-expelled'-students must be entered as a number");
             } catch (NullPointerException | IllegalStateException exception) {
-                ConsoleManager.printerror("Oups... Something went wrong");
+                ClientConsoleManager.printerror("Oups... Something went wrong");
                 System.exit(0);
             }
         }
@@ -276,19 +276,19 @@ public class InputAndVerifier {
         String strFormOfEducation;
         while (true) {
             try {
-                ConsoleManager.println("Enter form of education__choose from [ " + FormOfEducation.listAll() + "]_ ");
+                ClientConsoleManager.println("Enter form of education__choose from [ " + FormOfEducation.listAll() + "]_ ");
                 strFormOfEducation = userInput.nextLine().trim();
                 formOfEducation = FormOfEducation.valueOf(strFormOfEducation.toUpperCase());
                 if (strFormOfEducation.equals("")) throw new EmptyFieldException();
                 break;
             } catch (EmptyFieldException e) {
-                ConsoleManager.printerror("No form of education has been entered. Try again");
+                ClientConsoleManager.printerror("No form of education has been entered. Try again");
             } catch (NoSuchElementException exception) {
-                ConsoleManager.printerror("No 'form of education' spotted");
+                ClientConsoleManager.printerror("No 'form of education' spotted");
             } catch (IllegalArgumentException e) {
-                ConsoleManager.printerror("There is no such form of education");
+                ClientConsoleManager.printerror("There is no such form of education");
             } catch (NullPointerException | IllegalStateException exception) {
-                ConsoleManager.printerror("Oups... Something went wrong");
+                ClientConsoleManager.printerror("Oups... Something went wrong");
                 System.exit(0);
             }
         }
@@ -300,19 +300,19 @@ public class InputAndVerifier {
         String strSemester;
         while (true) {
             try {
-                ConsoleManager.println("Enter semester [ " + Semester.listAll() + "]_ ");
+                ClientConsoleManager.println("Enter semester [ " + Semester.listAll() + "]_ ");
                 strSemester = userInput.nextLine().trim();
                 semester = Semester.valueOf(strSemester.toUpperCase());
                 if (strSemester.equals("")) throw new EmptyFieldException();
                 break;
             } catch (EmptyFieldException e) {
-                ConsoleManager.printerror("No semester has been entered. Try again");
+                ClientConsoleManager.printerror("No semester has been entered. Try again");
             } catch (NoSuchElementException exception) {
-                ConsoleManager.printerror("No 'semester' spotted");
+                ClientConsoleManager.printerror("No 'semester' spotted");
             } catch (IllegalArgumentException e) {
-                ConsoleManager.printerror("There is no such semester");
+                ClientConsoleManager.printerror("There is no such semester");
             } catch (NullPointerException | IllegalStateException exception) {
-                ConsoleManager.printerror("Oups... Something went wrong");
+                ClientConsoleManager.printerror("Oups... Something went wrong");
                 System.exit(0);
             }
         }

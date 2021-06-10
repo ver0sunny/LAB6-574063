@@ -1,20 +1,22 @@
 package Client;
 
 import Common.commandToSend.AddToSend;
+import Common.commandToSend.ClearToSend;
 import Common.commandToSend.CommandToSend;
 import Common.commandToSend.HelpToSend;
+import Common.exceptions.NoArgumentException;
 import Common.exceptions.NoSuchCommandException;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class ConsoleManager {
+public class ClientConsoleManager {
 
     private Scanner userInput;
     private CommandManager commandManager;
     private ClientManager clientManager;
 
-    public ConsoleManager(Scanner userInput, CommandManager commandManager, ClientManager clientManager) {
+    public ClientConsoleManager(Scanner userInput, CommandManager commandManager, ClientManager clientManager) {
         this.userInput = userInput;
         this.commandManager = commandManager;
         this.clientManager = clientManager;
@@ -26,65 +28,60 @@ public class ConsoleManager {
             do {
                 command = (userInput.nextLine().trim() + " ").split(" ", 2);
                 command[1] = command[1].trim();
-//        commandManager.addToHistory();
                 commandManager.execute(command[0], command[1]);
 
             } while (true);
         } catch (NoSuchElementException exception) {
-            ConsoleManager.printerror("No user input detected");
+            ClientConsoleManager.printerror("No user input detected");
         } catch (IllegalStateException exception) {
-            ConsoleManager.printerror("Something unexpected went wrong");
+            ClientConsoleManager.printerror("Something unexpected went wrong");
         } catch (NoSuchCommandException e) {
-            ConsoleManager.printerror("No such command exist, check the list of available commands by calling 'help' command");
+            ClientConsoleManager.printerror("No such command exist, check the list of available commands by calling 'help' command");
         }
     }
 
     public void serverMode() {
         java.lang.String[] command;
+        CommandToSend finalCommand = null;
         CommandToSend helpToSend = new HelpToSend();
         CommandToSend addToSend = new AddToSend();
+        CommandToSend clearToSend = new ClearToSend();
         String contents;
         try {
             do {
                 command = (userInput.nextLine().trim() + " ").split(" ", 2);
                 command[1] = command[1].trim();
                 String commandName = command[0].toUpperCase();
+                try {
+                    if (commandName.equals("HELP")) {
+                        helpToSend.setArgs(command[1]);
+                        finalCommand = helpToSend;
 
-                if (commandName=="HELP") {
-                    helpToSend.setArgs(command[1]);
-                    clientManager.send(helpToSend);
+                    } else if (commandName.equals("ADD")) {
+                        addToSend.setArgs(command[1]);
+                        finalCommand = addToSend;
+
+                    } else if (commandName.equals("CLEAR")) {
+                        clearToSend.setArgs(command[1]);
+                        finalCommand = clearToSend;
+
+                    } else throw new NoSuchCommandException();
+                }catch (NoSuchCommandException e) {
+                    ClientConsoleManager.printerror("no such command exists ... check available commands");
                 }
-//                switch (commandName) {
-//                    case ("HELP"):
-//                        helpToSend.setArgs(command[1]);
-//                        clientManager.send(helpToSend);
-//                        break;
-//                }
-//                    case ("ADD"):
-//                        addToSend.setArgs(command[1]);
-//                        clientManager.send(addToSend);
-//                        ConsoleManager.println(clientManager.receiveMes());
-//                }
-            try {
-                if (helpToSend.getName() == null) throw new NoSuchCommandException();
-            } catch (NoSuchCommandException e) {
-                ConsoleManager.printerror("No such command exists, try again");
-            }
-            ConsoleManager.println(clientManager.receive());
-        } while (true) ;
-    } catch(
-    NoSuchElementException exception)
+                clientManager.send(finalCommand);
+                ClientConsoleManager.println(clientManager.receiveMes());
+                ClientConsoleManager.println(clientManager.receive());
+            } while (true);
+        } catch (
+                NoSuchElementException exception) {
+            ClientConsoleManager.printerror("No user input detected");
+        } catch (
+                IllegalStateException exception) {
+            ClientConsoleManager.printerror("Something unexpected went wrong");
+        }
 
-    {
-        ConsoleManager.printerror("No user input detected");
-    } catch(
-    IllegalStateException exception)
-
-    {
-        ConsoleManager.printerror("Something unexpected went wrong");
     }
-
-}
 
     public void scriptMode() {
         java.lang.String[] command = {"", ""};

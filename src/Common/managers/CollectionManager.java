@@ -4,7 +4,7 @@ import Common.collectionInfo.FormOfEducation;
 import Common.collectionInfo.StudyGroup;
 import Common.exceptions.CollectionIsEmptyException;
 import Common.exceptions.NoSuchStudentsCountException;
-import Server.ConsoleManager;
+import Server.ServerConsoleManager;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -105,7 +105,7 @@ public class CollectionManager {
             if (studyGroupsCollection.isEmpty()) throw new CollectionIsEmptyException();
             studyGroupsCollection.removeIf(studyGroup -> studyGroup.getId().equals(id));
         }catch (CollectionIsEmptyException e) {
-            ConsoleManager.printerror("Collection is empty");
+            ServerConsoleManager.printerror("Collection is empty");
         }
     }
 
@@ -129,9 +129,9 @@ public class CollectionManager {
             if (theGroupsCount == 0) throw new NoSuchStudentsCountException();
             studyGroupsCollection.removeIf(studyGroup -> studyGroup.getStudentsCount() == studyCount);
         } catch (CollectionIsEmptyException e) {
-            ConsoleManager.printerror("Collection is empty T-T");
+            ServerConsoleManager.printerror("Collection is empty T-T");
         }catch (NoSuchStudentsCountException e) {
-            ConsoleManager.printerror("No groups with this many students found");
+            ServerConsoleManager.printerror("No groups with this many students found");
         }
     }
 

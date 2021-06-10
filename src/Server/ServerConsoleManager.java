@@ -1,19 +1,20 @@
 package Server;
 
+import Client.ClientConsoleManager;
 import Common.exceptions.NoSuchCommandException;
 import Common.managers.Serializer;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class ConsoleManager {
+public class ServerConsoleManager {
 
     private Scanner userInput;
     private CommandManager commandManager;
     private ServerManager serverManager;
     private Serializer serializer;
 
-    public ConsoleManager(Scanner userInput, CommandManager commandManager, ServerManager serverManager,Serializer serializer) {
+    public ServerConsoleManager(Scanner userInput, CommandManager commandManager, ServerManager serverManager, Serializer serializer) {
         this.userInput = userInput;
         this.commandManager = commandManager;
         this.serverManager = serverManager;
@@ -31,11 +32,11 @@ public class ConsoleManager {
 
             } while (true);
         } catch (NoSuchElementException exception) {
-            Client.ConsoleManager.printerror("No user input detected");
+            ClientConsoleManager.printerror("No user input detected");
         } catch (IllegalStateException exception) {
-            Client.ConsoleManager.printerror("Something unexpected went wrong");
+            ClientConsoleManager.printerror("Something unexpected went wrong");
         } catch (NoSuchCommandException e) {
-            Client.ConsoleManager.printerror("No such command exist, check the list of available commands by calling 'help' command");
+            ClientConsoleManager.printerror("No such command exist, check the list of available commands by calling 'help' command");
         }
     }
 
@@ -46,9 +47,9 @@ public class ConsoleManager {
                 serverManager.send();
             } while (true);
         } catch (NoSuchElementException exception) {
-            Client.ConsoleManager.printerror("No user input detected");
+            ClientConsoleManager.printerror("No user input detected");
         } catch (IllegalStateException exception) {
-            Client.ConsoleManager.printerror("Something unexpected went wrong");
+            ClientConsoleManager.printerror("Something unexpected went wrong");
         }
     }
 

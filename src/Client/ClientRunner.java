@@ -17,7 +17,6 @@ public class ClientRunner {
         Serializer serializer = new Serializer();
         ConnectionPacket connectionChannel = new ConnectionPacket();
         ClientManager clientManager = new ClientManager(serializer, connectionChannel);
-        ConsoleManager.println("..Client activated..");
 
         Scanner userInput = new Scanner(System.in);
         InputAndVerifier inputAndVerifier = new InputAndVerifier(userInput);
@@ -32,7 +31,7 @@ public class ClientRunner {
                // new RemoveByIdCommand(collectionManager), new RemoveByStudentCount(collectionManager),
                 //new ShowCommand(collectionManager), new UpdateCommand(collectionManager,inputAndVerifier) );
         CommandManager commandManager = new CommandManager(historyManager,commandFactory,inputAndVerifier);
-        ConsoleManager consoleManager = new ConsoleManager(userInput,commandManager, clientManager);
+        ClientConsoleManager consoleManager = new ClientConsoleManager(userInput,commandManager, clientManager);
         consoleManager.serverMode();
     }
 

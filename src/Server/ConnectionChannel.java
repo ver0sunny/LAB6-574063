@@ -15,8 +15,9 @@ public class ConnectionChannel {
     private Serializer serializer;
     private byte[] toSend;
 
-    public ConnectionChannel() {
+    public ConnectionChannel(Serializer serializer) {
         setUp();
+        this.serializer = serializer;
     }
 
     public void setUp() {
@@ -28,11 +29,11 @@ public class ConnectionChannel {
         }
         //создаю пустой пакет для получения сообщения
         DatagramPacket inputPacket = new DatagramPacket(receivingDataBuffer, receivingDataBuffer.length);
-        ConsoleManager.println("Waiting for a client to connect...");
+        ServerConsoleManager.println("Waiting for a client to connect...");
         //получаю пакет
         try {
             serverSocket.receive(inputPacket);
-            ConsoleManager.println("SetUp successfull!");
+            ServerConsoleManager.println("SetUp successfull!");
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
@@ -73,14 +74,14 @@ public class ConnectionChannel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return serializer.deserializeCommand(inputPacket.getData());
+        return serializer.deserializeMes(inputPacket.getData());
     }
 
     public void sendMes(String mesToSend) {
-        DatagramPacket sendingPacket = new DatagramPacket(serializer.serializeCommand(mesToSend),serializer.serializeCommand(mesToSend).length,senderAddress, senderPort);
+        DatagramPacket sendingPacket = new DatagramPacket(serializer.serializeMes(mesToSend),serializer.serializeMes(mesToSend).length,senderAddress, senderPort);
         try {
             serverSocket.send(sendingPacket);
-            System.out.println("Message sent successfully!");
+//            ServerConsoleManager.println("Message sent successfully!");
         } catch (IOException e) {
             e.printStackTrace();
         }

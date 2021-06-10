@@ -1,6 +1,5 @@
 package Server;
 
-import Common.exceptions.NoArgumentProvidedException;
 import Common.exceptions.NoSuchCommandException;
 import Common.managers.CollectionManager;
 import Common.managers.HistoryManager;
@@ -30,7 +29,7 @@ public class CommandManager {
 //            sb.append("No argument provided, check requirements " + commandFactory.getCommand(commandName).getName());
         } catch (NoSuchCommandException e) {
             sb.append("No such command exists, check available commands" + "\n" + commandFactory.getCommand("HELP").execute(null));
-            ConsoleManager.printerror("No such command exists, check available commands");
+            ServerConsoleManager.printerror("No such command exists, check available commands");
         }
         return sb.toString();
     }

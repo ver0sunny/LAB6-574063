@@ -37,7 +37,7 @@ public class Serializer {
         return null;
     }
 
-    public byte[] serializeCommand(String obj) {
+    public byte[] serializeMes(String obj) {
         try {
             try(ByteArrayOutputStream bos = new ByteArrayOutputStream()){
                 try(ObjectOutputStream oos = new ObjectOutputStream(bos)){
@@ -52,7 +52,7 @@ public class Serializer {
         return null;
     }
 
-    public String deserializeCommand(byte[] bytes) {
+    public String deserializeMes(byte[] bytes) {
         try {
             try(ByteArrayInputStream bis = new ByteArrayInputStream(bytes)){
                 try(ObjectInputStream ois = new ObjectInputStream(bis)){

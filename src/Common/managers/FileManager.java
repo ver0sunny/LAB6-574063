@@ -1,7 +1,7 @@
 package Common.managers;
 
 
-import Client.ConsoleManager;
+import Client.ClientConsoleManager;
 import Common.collectionInfo.StudyGroup;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
@@ -28,10 +28,10 @@ public class FileManager {
                 pw.write(gson.toJson(collection));
                 pw.close();
             } catch (IOException e) {
-                ConsoleManager.printerror("File cannot be opened");
+                ClientConsoleManager.printerror("File cannot be opened");
             }
         } else {
-            ConsoleManager.printerror("): No file found to write to :(");
+            ClientConsoleManager.printerror("): No file found to write to :(");
         }
     }
 
@@ -43,18 +43,18 @@ public class FileManager {
                 Scanner sc = new Scanner(filename);
                 LinkedList<StudyGroup> collection;
                 collection = gson.fromJson(sc.nextLine().trim(), new TypeToken<LinkedList<StudyGroup>>(){}.getType());
-                ConsoleManager.println(" (: File upload was SUCCESSFUL :)");
+                ClientConsoleManager.println(" (: File upload was SUCCESSFUL :)");
                 return collection;
             } catch (FileNotFoundException e) {
-                ConsoleManager.printerror("File not found");
+                ClientConsoleManager.printerror("File not found");
             } catch (NoSuchElementException e) {
-                ConsoleManager.printerror("File is empty");
+                ClientConsoleManager.printerror("File is empty");
             } catch (JsonParseException e) {
-                ConsoleManager.printerror("File does not provide a collection");
-                ConsoleManager.println("ADVICE: check file/text format");
+                ClientConsoleManager.printerror("File does not provide a collection");
+                ClientConsoleManager.println("ADVICE: check file/text format");
             }
         } else {
-            ConsoleManager.println(" ): No file chosen for upload :( ");
+            ClientConsoleManager.println(" ): No file chosen for upload :( ");
         }
         return new LinkedList<>();
     }
