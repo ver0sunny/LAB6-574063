@@ -1,4 +1,9 @@
 package Common.commandToSend;
 
-public class HistoryToSend {
+import java.io.Serializable;
+
+public class HistoryToSend extends CommandToSend implements Serializable {
+    public HistoryToSend() {
+        super("HISTORY", null,null);
+    }
 }

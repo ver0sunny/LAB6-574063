@@ -1,9 +1,6 @@
 package Client;
 
-import Common.commandToSend.AddToSend;
-import Common.commandToSend.ClearToSend;
-import Common.commandToSend.CommandToSend;
-import Common.commandToSend.HelpToSend;
+import Common.commandToSend.*;
 import Common.exceptions.NoArgumentException;
 import Common.exceptions.NoSuchCommandException;
 
@@ -46,6 +43,7 @@ public class ClientConsoleManager {
         CommandToSend helpToSend = new HelpToSend();
         CommandToSend addToSend = new AddToSend();
         CommandToSend clearToSend = new ClearToSend();
+        CommandToSend historyToSend = new HistoryToSend();
         String contents;
         try {
             do {
@@ -64,6 +62,10 @@ public class ClientConsoleManager {
                     } else if (commandName.equals("CLEAR")) {
                         clearToSend.setArgs(command[1]);
                         finalCommand = clearToSend;
+
+                    } else if (commandName.equals("HISTORY")) {
+                        historyToSend.setArgs(command[1]);
+                        finalCommand = historyToSend;
 
                     } else throw new NoSuchCommandException();
                 }catch (NoSuchCommandException e) {
