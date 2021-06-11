@@ -3,12 +3,9 @@ package Server;
 import Common.commandCommon.AbstractCommand;
 import Common.commandCommon.Command;
 import Common.managers.InputAndVerifier;
-import Common.serverCommands.AddCommand;
-import Common.serverCommands.ClearCommand;
-import Common.serverCommands.HelpCommand;
+import Common.serverCommands.*;
 import Common.exceptions.NoSuchCommandException;
 import Common.managers.CollectionManager;
-import Common.serverCommands.HistoryCommand;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,9 +21,10 @@ public class CommandFactory {
                           ClearCommand clearCommand,
                           // ExecuteScript executeScript,
                           // ExitCommand exitCommand, FilterByFormOfEducationCommand filterByFormOfEducationCommand,
-                          HelpCommand helpCommand, HistoryCommand historyCommand) //InfoCommand infoCommand, InsertAtCommand insertAtCommand,
-                          //  PrintDecendingBySemester printDecendingBySemester, RemoveByIdCommand removeByIdCommand,
-                          //  RemoveByStudentCount removeByStudentCount, ShowCommand showCommand,
+                          HelpCommand helpCommand, HistoryCommand historyCommand, InfoCommand infoCommand, //InsertAtCommand insertAtCommand,
+                          DecendingBySemesterCommand decendingBySemesterCommand, RemoveByIdCommand removeByIdCommand,
+                          //  RemoveByStudentCount removeByStudentCount,
+                          ShowCommand showCommand)
                           // UpdateCommand updateCommand)
                           {
         this.inputAndVerifier = inputAndVerifier;
@@ -40,12 +38,12 @@ public class CommandFactory {
 //            map.put("FILTER_GREATER_THAN_FORM_OF_EDUCATION", filterByFormOfEducationCommand);
             map.put("HELP", helpCommand);
             map.put("HISTORY", historyCommand);
-//            map.put("INFO", infoCommand);
+            map.put("INFO", infoCommand);
 //            map.put("INSERT_AT", insertAtCommand);
-//            map.put("PRINT_FIELD_DESCENDING_SEMESTER_ENUM", printDecendingBySemester);
-//            map.put("REMOVE_BY_ID", removeByIdCommand);
+            map.put("PRINT_FIELD_DESCENDING_SEMESTER_ENUM", decendingBySemesterCommand);
+            map.put("REMOVE_BY_ID", removeByIdCommand);
 //            map.put("REMOVE_ANY_BY_STUDENTS_COUNT", removeByStudentCount);
-//            map.put("SHOW", showCommand);
+            map.put("SHOW", showCommand);
 //            map.put("UPDATE", updateCommand);
 
         }

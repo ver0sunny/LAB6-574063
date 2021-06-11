@@ -24,8 +24,8 @@ public class HelpCommand extends AbstractCommand implements Command {
 //        }
 
         StringBuilder sb = new StringBuilder();
-        sb.append(CommandFactory.map.get("ADD").toString());
-        sb.append("\n");
+//        sb.append(CommandFactory.map.get("ADD").toString());
+//        sb.append("\n");
 //        sb.append(CommandFactory.map.get("ADD_IF_MIN").toString());
 //        sb.append("\n");
         sb.append(CommandFactory.map.get("CLEAR").toString());
@@ -38,22 +38,22 @@ public class HelpCommand extends AbstractCommand implements Command {
 //        sb.append("\n");
         sb.append(CommandFactory.map.get("HELP").toString());
         sb.append("\n");
-//        sb.append(CommandFactory.map.get("HISTORY").toString());
-//        sb.append("\n");
-//        sb.append(CommandFactory.map.get("INFO").toString());
-//        sb.append("\n");
+        sb.append(CommandFactory.map.get("HISTORY").toString());
+        sb.append("\n");
+        sb.append(CommandFactory.map.get("INFO").toString());
+        sb.append("\n");
 //        sb.append(CommandFactory.map.get("INSERT_AT").toString());
 //        sb.append("\n");
-//        sb.append(CommandFactory.map.get("PRINT_FIELD_DESCENDING_SEMESTER_ENUM").toString());
-//        sb.append("\n");
+        sb.append(CommandFactory.map.get("PRINT_FIELD_DESCENDING_SEMESTER_ENUM").toString());
+        sb.append("\n");
 //        sb.append(CommandFactory.map.get("REMOVE_BY_ID").toString());
 //        sb.append("\n");
 //        sb.append(CommandFactory.map.get("REMOVE_ANY_BY_STUDENTS_COUNT").toString());
 //        sb.append("\n");
 //        sb.append(CommandFactory.map.get("SAVE").toString());
 //        sb.append("\n");
-//        sb.append(CommandFactory.map.get("SHOW").toString());
-//        sb.append("\n");
+        sb.append(CommandFactory.map.get("SHOW").toString());
+        sb.append("\n");
 //        sb.append(CommandFactory.map.get("UPDATE").toString());
 //        sb.append("\n");
         connectionChannel.sendMes("");

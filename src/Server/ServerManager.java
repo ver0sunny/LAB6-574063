@@ -1,6 +1,7 @@
 package Server;
 
 import Common.commandToSend.CommandToSend;
+import Common.exceptions.NoArgumentException;
 import Common.exceptions.NoSuchCommandException;
 import Common.managers.Serializer;
 
@@ -29,16 +30,20 @@ public class ServerManager {
         byte[] inputPacket = connectionChannel.receive();
         CommandToSend receivedObject;
         receivedObject = serializer.deserialize(inputPacket);
-        String commandName = receivedObject.getName();
-        String args = receivedObject.getArgs();
-        String messageToSend = null;
-            try {
+        try {
+            if (receivedObject != null) {
+                String commandName = receivedObject.getName();
+                String args = receivedObject.getArgs();
+                String messageToSend = null;
                 messageToSend = commandManager.execute(commandName, args);
-            } catch (NoSuchCommandException e) {
-                ServerConsoleManager.println("Client mistake");
-            }
-        receivedObject.setArgs(messageToSend);
-        toSend = serializer.serialize(receivedObject);
+                receivedObject.setArgs(messageToSend);
+                toSend = serializer.serialize(receivedObject);
+            } else throw new NoSuchCommandException();
+
+        } catch (NoSuchCommandException e) {
+            ServerConsoleManager.println("Client mistake");
+            return null;
+        }
         return toSend;
     }
 

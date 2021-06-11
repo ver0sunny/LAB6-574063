@@ -1,5 +1,6 @@
 package Client;
 
+import Common.commandCommon.Command;
 import Common.commandToSend.*;
 import Common.exceptions.NoArgumentException;
 import Common.exceptions.NoSuchCommandException;
@@ -44,6 +45,10 @@ public class ClientConsoleManager {
         CommandToSend addToSend = new AddToSend();
         CommandToSend clearToSend = new ClearToSend();
         CommandToSend historyToSend = new HistoryToSend();
+        CommandToSend infoToSend = new InfoToSend();
+        CommandToSend decendingBySemesterToSend = new DecendingBySemesterToSend();
+        CommandToSend showToSend = new ShowToSend();
+        CommandToSend removeByIdToSend= new RemoveByIdToSend();
         String contents;
         try {
             do {
@@ -66,6 +71,28 @@ public class ClientConsoleManager {
                     } else if (commandName.equals("HISTORY")) {
                         historyToSend.setArgs(command[1]);
                         finalCommand = historyToSend;
+
+                    } else if (commandName.equals("INFO")) {
+                        infoToSend.setArgs(command[1]);
+                        finalCommand = infoToSend;
+
+                    } else if (commandName.equals("PRINT_FIELD_DESCENDING_SEMESTER_ENUM")) {
+                        decendingBySemesterToSend.setArgs(command[1]);
+                        finalCommand = decendingBySemesterToSend;
+
+                    } else if (commandName.equals("SHOW")) {
+                        showToSend.setArgs(command[1]);
+                        finalCommand = showToSend;
+
+                    } else if (commandName.equals("REMOVE_BY_ID")) {
+                        try {
+                            if (command[1].equals("")) throw new NoArgumentException();
+                            removeByIdToSend.setArgs(command[1]);
+                            finalCommand = removeByIdToSend;
+                        }catch (NoArgumentException e) {
+                            ClientConsoleManager.printerror("no argument");
+                        }
+
 
                     } else throw new NoSuchCommandException();
                 }catch (NoSuchCommandException e) {

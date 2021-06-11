@@ -1,6 +1,7 @@
 package Server;
 
 import Client.ClientConsoleManager;
+import Common.exceptions.ClientMistakeException;
 import Common.exceptions.NoSuchCommandException;
 import Common.managers.Serializer;
 
@@ -43,8 +44,8 @@ public class ServerConsoleManager {
     public void serverMode() {
         try {
             do {
-                serverManager.receiveExecute();
-                serverManager.send();
+                    serverManager.receiveExecute();
+                    serverManager.send();
             } while (true);
         } catch (NoSuchElementException exception) {
             ClientConsoleManager.printerror("No user input detected");

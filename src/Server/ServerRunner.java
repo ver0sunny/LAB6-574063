@@ -1,10 +1,7 @@
 package Server;
 
 import Common.managers.*;
-import Common.serverCommands.AddCommand;
-import Common.serverCommands.ClearCommand;
-import Common.serverCommands.HelpCommand;
-import Common.serverCommands.HistoryCommand;
+import Common.serverCommands.*;
 
 import java.util.Scanner;
 
@@ -25,10 +22,12 @@ public class ServerRunner {
         CommandFactory commandFactory = new CommandFactory(collectionManager, inputAndVerifier, new AddCommand(collectionManager,connectionChannel),// new AddIfMinCommand(collectionManager, inputAndVerifier),
                  new ClearCommand(collectionManager,connectionChannel),new HelpCommand(connectionChannel),
                 //new ExecuteScript(), new ExitCommand(collectionManager), new FilterByFormOfEducationCommand(collectionManager),
-                 new HistoryCommand(historyManager,connectionChannel)); //new InfoCommand(collectionManager),
-               // new InsertAtCommand(collectionManager, inputAndVerifier), new PrintDecendingBySemester(collectionManager),
-              //  new RemoveByIdCommand(collectionManager), new RemoveByStudentCount(collectionManager),
-              //  new SaveCommand(collectionManager), new ShowCommand(collectionManager), new UpdateCommand(collectionManager, inputAndVerifier));
+                 new HistoryCommand(historyManager,connectionChannel), new InfoCommand(collectionManager,connectionChannel), // new InsertAtCommand(collectionManager, inputAndVerifier),
+                 new DecendingBySemesterCommand(collectionManager,connectionChannel),
+                new RemoveByIdCommand(collectionManager,connectionChannel),
+                //  new RemoveByStudentCount(collectionManager),
+              //  new SaveCommand(collectionManager),
+                new ShowCommand(collectionManager,connectionChannel)); // new UpdateCommand(collectionManager, inputAndVerifier));
         CommandManager commandManager = new CommandManager(historyManager, collectionManager, commandFactory, inputAndVerifier);
         ServerManager serverManager = new ServerManager(commandManager, serializer,connectionChannel);
 //        serverManager.setUp();

@@ -20,7 +20,7 @@ public class ClearCommand extends AbstractCommand implements Command {
     public String execute(String args) {
         if (collectionManager.getCollectionSize() == 0) {
             connectionChannel.sendMes("This collection is already empty! Nothing to clear out");
-            return null;
+            return "";
         }
         collectionManager.clearCollection();
         connectionChannel.sendMes("Collection cleared! Now it's so empty... ( •́ ‸ • ̀)");
